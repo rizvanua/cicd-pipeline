@@ -17,6 +17,13 @@ sh scripts/build.sh'''
       }
     }
 
+    stage('Tests') {
+      steps {
+        sh '''chmod +x scripts/test.sh
+sh scripts/test.sh'''
+      }
+    }
+
   }
   environment {
     registry = 'markony/epam-ci-cd-js-app'
