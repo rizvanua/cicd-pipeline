@@ -1,9 +1,6 @@
 pipeline {
   environment {
     imagename = "rizvanua/react-app"
-    registryCredential = 'rizvanua'
-    dockerImage = ''
-    PATH = "/usr/local/bin:$PATH"
   }
   agent any
   stages {
@@ -27,7 +24,7 @@ pipeline {
     stage('Docker Image Build') {
       steps {
         script {
-          dockerImage = docker.build imagename
+          def dockerImage = docker.build imagename
         }
 
       }
