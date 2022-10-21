@@ -1,6 +1,7 @@
 pipeline {
   environment {
     imagename = "rizvanua/react-app"
+    registryCredential = 'dockerhub'
   }
   agent any
   stages {
@@ -32,7 +33,7 @@ pipeline {
     stage('Docker Push Image') {
       steps {
         script {
-          docker.withRegistry('', 'docker_hub_creds_romeonil') {
+          docker.withRegistry('', registryCredential) {
             def app = docker.image("${registry}:${env.BUILD_ID}")
             app.push('latest')
             app.push("${env.BUILD_NUMBER}")
