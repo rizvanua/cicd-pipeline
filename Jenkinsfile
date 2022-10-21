@@ -4,12 +4,12 @@ pipeline {
   }
   agent any
   stages {
-    stage ('Checkout Git Repository') {
+    stage('Checkout Git Repository') {
       steps {
-         checkout scm
+        checkout scm
         echo 'scm is chekouted'
       }
-    } 
+    }
     stage('Application Build') {
       steps {
         sh 'script scripts/build.sh'
@@ -29,5 +29,17 @@ pipeline {
 
       }
     }
+    stage('Docker Push Image') {
+      steps {
+        script {
+          docker.withRegistry('', 'docker_hub_creds_id') {
+            def app = docker.image("${registry}:${env.BUILD_ID}")
+            app.push('latest')
+            app.push("${env.BUILD_NUMBER}")
+          }
+        }
+      }
+    }
   }
 }
+
