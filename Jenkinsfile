@@ -18,7 +18,7 @@ pipeline {
         sh 'script scripts/test.sh'
       }
     }
-    stage('Image Build') {
+    stage('Docker Image Build') {
       steps {
         script {
           docker.build("rizvanua-${env.BUILD_ID}")
