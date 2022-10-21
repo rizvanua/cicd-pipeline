@@ -32,7 +32,7 @@ pipeline {
     stage('Docker Push Image') {
       steps {
         script {
-          docker.withRegistry('', 'hub_id') {
+          docker.withRegistry('', 'docker_hub_creds_romeonil') {
             def app = docker.image("${registry}:${env.BUILD_ID}")
             app.push('latest')
             app.push("${env.BUILD_NUMBER}")
