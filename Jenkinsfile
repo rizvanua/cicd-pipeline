@@ -1,4 +1,10 @@
 pipeline {
+  environment {
+    imagename = "rizvanua/react-app"
+    registryCredential = 'rizvanua'
+    dockerImage = ''
+    PATH = "/usr/local/bin:$PATH"
+  }
   agent any
   stages {
     stage ('Checkout Git Repository') {
@@ -21,7 +27,7 @@ pipeline {
     stage('Docker Image Build') {
       steps {
         script {
-          docker.build("rizvanua-${env.BUILD_ID}")
+          dockerImage = docker.build imagename
         }
 
       }
