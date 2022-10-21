@@ -1,7 +1,7 @@
 pipeline {
   environment {
     imagename = "rizvanua/react-app"
-    registryCredential = 'dockerhub'
+    registryCredential = 'admin'
   }
   agent any
   stages {
