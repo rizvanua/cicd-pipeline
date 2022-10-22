@@ -1,7 +1,7 @@
 pipeline {
   environment {
-    imagename = "rizvanua/react-app"
-    registryCredential = 'admin'
+    imagename = "romeonil/cicd-pipeline-test"
+    registryCredential = 'dockerhub'
   }
   agent any
   stages {
