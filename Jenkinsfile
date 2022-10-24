@@ -36,7 +36,6 @@ pipeline {
           docker.withRegistry('', registryCredential) {
             def app = docker.image("${imagename}:${env.BUILD_ID}")
             app.push('latest')
-            app.push("${env.BUILD_ID}")
           }
         }
       }
